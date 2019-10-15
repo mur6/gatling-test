@@ -1,5 +1,10 @@
 scalaVersion := "2.12.8"
 
-// Want to use a published library in your project?
-// You can define other libraries as dependencies in your build like this:
-// libraryDependencies += "org.typelevel" %% "cats-core" % "1.6.0"
+enablePlugins(GatlingPlugin)
+
+libraryDependencies ++= Seq(
+  "io.gatling.highcharts" % "gatling-charts-highcharts" % "3.0.0" % "test",
+  "io.gatling" % "gatling-test-framework" % "3.0.0" % "test",
+//  "org.msgpack" % "jackson-dataformat-msgpack" % "0.8.13" % "test",
+//  "org.mindrot" % "jbcrypt" % "0.4" % "test"
+)
