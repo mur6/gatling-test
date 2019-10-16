@@ -1,10 +1,20 @@
 scalaVersion := "2.12.8"
 
-enablePlugins(GatlingPlugin)
+val gatlingVersion = "3.0.0"
 
-libraryDependencies ++= Seq(
-  "io.gatling.highcharts" % "gatling-charts-highcharts" % "3.0.0" % "test",
-  "io.gatling" % "gatling-test-framework" % "3.0.0" % "test",
-//  "org.msgpack" % "jackson-dataformat-msgpack" % "0.8.13" % "test",
-//  "org.mindrot" % "jbcrypt" % "0.4" % "test"
-)
+lazy val root = (project in file("."))
+  .enablePlugins(GatlingPlugin)
+  .settings(
+    //inConfig(Test)(sbtprotoc.ProtocPlugin.protobufConfigSettings),
+    PB.targets in Compile := Seq(
+      scalapb.gen() -> (sourceManaged in Compile).value
+    ),
+    libraryDependencies ++= Seq(
+      "io.grpc" % "grpc-netty" % scalapb.compiler.Version.grpcJavaVersion,
+      "io.gatling.highcharts" % "gatling-charts-highcharts" % gatlingVersion % "test",
+      "io.gatling" % "gatling-test-framework" % gatlingVersion % "test",
+      "com.github.phisgr" %% "gatling-grpc" % "0.5.0" % "test",
+      "com.thesamet.scalapb" %% "scalapb-runtime-grpc" % scalapb.compiler.Version.scalapbVersion,
+      "com.thesamet.scalapb" %% "scalapb-runtime" % scalapb.compiler.Version.scalapbVersion % "protobuf",
+    )
+  )
