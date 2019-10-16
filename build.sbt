@@ -1,20 +1,35 @@
-scalaVersion := "2.12.8"
 
-val gatlingVersion = "3.0.0"
+
+//val gatlingVersion = "3.0.0"
+val gatlingVersion = "3.2.1"
 
 lazy val root = (project in file("."))
   .enablePlugins(GatlingPlugin)
   .settings(
-    //inConfig(Test)(sbtprotoc.ProtocPlugin.protobufConfigSettings),
-    PB.targets in Compile := Seq(
-      scalapb.gen() -> (sourceManaged in Compile).value
+    scalaVersion := "2.12.8",
+    inConfig(Test)(sbtprotoc.ProtocPlugin.protobufConfigSettings),
+    PB.targets in Test := Seq(
+      scalapb.gen() -> (sourceManaged in Test).value
+    ),
+    scalacOptions ++= Seq(
+      "-language:existentials",
+      "-language:implicitConversions",
     ),
     libraryDependencies ++= Seq(
       "io.grpc" % "grpc-netty" % scalapb.compiler.Version.grpcJavaVersion,
-      "io.gatling.highcharts" % "gatling-charts-highcharts" % gatlingVersion % "test",
-      "io.gatling" % "gatling-test-framework" % gatlingVersion % "test",
-      "com.github.phisgr" %% "gatling-grpc" % "0.5.0" % "test",
-      "com.thesamet.scalapb" %% "scalapb-runtime-grpc" % scalapb.compiler.Version.scalapbVersion,
       "com.thesamet.scalapb" %% "scalapb-runtime" % scalapb.compiler.Version.scalapbVersion % "protobuf",
-    )
+      "com.thesamet.scalapb" %% "scalapb-runtime-grpc" % scalapb.compiler.Version.scalapbVersion,
+      "io.gatling" % "gatling-core" % gatlingVersion % "test",
+      "io.gatling.highcharts" % "gatling-charts-highcharts" % gatlingVersion % "test",
+      //"io.gatling" % "gatling-test-framework" % gatlingVersion % "test"
+      "com.github.phisgr" %% "gatling-grpc" % "0.5.0" % "test",
+    ),
+//    libraryDependencies ++= Seq(
+//      "io.grpc" % "grpc-netty" % scalapb.compiler.Version.grpcJavaVersion,
+//      "io.gatling.highcharts" % "gatling-charts-highcharts" % gatlingVersion % "test",
+//      "io.gatling" % "gatling-test-framework" % gatlingVersion % "test",
+//
+//      "com.thesamet.scalapb" %% "scalapb-runtime-grpc" % scalapb.compiler.Version.scalapbVersion,
+//      "com.thesamet.scalapb" %% "scalapb-runtime" % scalapb.compiler.Version.scalapbVersion % "protobuf",
+//    ),
   )
