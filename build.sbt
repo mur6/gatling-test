@@ -21,7 +21,7 @@ lazy val root = (project in file("."))
       "com.thesamet.scalapb" %% "scalapb-runtime-grpc" % scalapb.compiler.Version.scalapbVersion,
       "io.gatling" % "gatling-core" % gatlingVersion % "test",
       "io.gatling.highcharts" % "gatling-charts-highcharts" % gatlingVersion % "test",
-      //"io.gatling" % "gatling-test-framework" % gatlingVersion % "test"
+      "io.gatling" % "gatling-test-framework" % gatlingVersion % "test",
       "com.github.phisgr" %% "gatling-grpc" % "0.5.0" % "test",
     ),
 //    libraryDependencies ++= Seq(

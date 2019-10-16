@@ -14,14 +14,13 @@ import scala.concurrent.duration._
 class MySimu extends Simulation {
   //val grpcConf = grpc(ManagedChannelBuilder.forAddress("localhost", 8080).usePlaintext())
   val grpcConf = grpc(ManagedChannelBuilder.forAddress("localhost", 8080).usePlaintext())
-    .shareChannel
 
-  val computerDbScn = scenario("Computer Scenario")
+  val computerDbScn = scenario("My Scenario")
   .exec(
     grpc("my_request")
       .rpc(GreeterServiceGrpc.METHOD_SAY_HELLO)
       .payload(HelloRequest(name="abc"))
-  )
+  ).exitHereIfFailed
 
   setUp(computerDbScn.inject(
     constantUsersPerSec(2) during(1 minute)
