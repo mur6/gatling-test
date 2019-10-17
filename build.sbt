@@ -1,6 +1,3 @@
-
-
-//val gatlingVersion = "3.0.0"
 val gatlingVersion = "3.2.1"
 
 lazy val root = (project in file("."))
