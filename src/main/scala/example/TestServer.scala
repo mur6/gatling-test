@@ -1,9 +1,9 @@
 package example
 
 import io.grpc.{Server, ServerBuilder}
-
+import example.test._
 import scala.concurrent.{ExecutionContext, Future}
-import example.test.{GreeterServiceGrpc, HelloReply, HelloRequest}
+
 
 object TestServer {
   def startServer(): Server = {
@@ -14,10 +14,14 @@ object TestServer {
     }
 
     val port = 50111
-    val server: Server = ServerBuilder.forPort(port)
-      .addService(GreeterServiceGrpc.bindService(greetService, ExecutionContext.global))
-      .build.start
+    val server = ServerBuilder.forPort(port)
+      .addService(GreeterServiceGrpc.bindService(greetService, ExecutionContext.global)).build.start
 
     server
+  }
+
+  def main(args: Array[String]): Unit = {
+    val server = startServer()
+    server.awaitTermination()
   }
 }

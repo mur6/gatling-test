@@ -12,7 +12,7 @@ import example.test.{GreeterServiceGrpc, HelloReply, HelloRequest}
 
 
 class MySimu extends Simulation {
-  val grpcConf = grpc(ManagedChannelBuilder.forAddress("localhost", 8080).usePlaintext())
+  val grpcConf = grpc(ManagedChannelBuilder.forAddress("localhost", 50111).usePlaintext())
 
   val computerDbScn = scenario("My Scenario")
   .exec(

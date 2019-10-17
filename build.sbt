@@ -4,9 +4,9 @@ lazy val root = (project in file("."))
   .enablePlugins(GatlingPlugin)
   .settings(
     scalaVersion := "2.12.8",
-    inConfig(Test)(sbtprotoc.ProtocPlugin.protobufConfigSettings),
-    PB.targets in Test := Seq(
-      scalapb.gen() -> (sourceManaged in Test).value
+    inConfig(Compile)(sbtprotoc.ProtocPlugin.protobufConfigSettings),
+    PB.targets in Compile := Seq(
+      scalapb.gen() -> (sourceManaged in Compile).value
     ),
     scalacOptions ++= Seq(
       "-language:existentials",
@@ -14,6 +14,7 @@ lazy val root = (project in file("."))
     ),
     libraryDependencies ++= Seq(
       "io.grpc" % "grpc-netty" % scalapb.compiler.Version.grpcJavaVersion,
+      "io.grpc" % "grpc-all" % scalapb.compiler.Version.grpcJavaVersion,
       "com.thesamet.scalapb" %% "scalapb-runtime" % scalapb.compiler.Version.scalapbVersion % "protobuf",
       "com.thesamet.scalapb" %% "scalapb-runtime-grpc" % scalapb.compiler.Version.scalapbVersion,
       "io.gatling" % "gatling-core" % gatlingVersion % "test",
