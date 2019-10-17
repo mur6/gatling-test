@@ -23,6 +23,7 @@ class MySimu extends Simulation {
   ).exitHereIfFailed
 
   setUp(computerDbScn.inject(
-    constantUsersPerSec(2) during(1 minute)
+    //constantUsersPerSec(2) during(1 minute)
+    atOnceUsers(1),
   ).protocols(grpcConf))
 }

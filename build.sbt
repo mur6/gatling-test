@@ -21,12 +21,4 @@ lazy val root = (project in file("."))
       "io.gatling" % "gatling-test-framework" % gatlingVersion % "test",
       "com.github.phisgr" %% "gatling-grpc" % "0.5.0" % "test",
     ),
-//    libraryDependencies ++= Seq(
-//      "io.grpc" % "grpc-netty" % scalapb.compiler.Version.grpcJavaVersion,
-//      "io.gatling.highcharts" % "gatling-charts-highcharts" % gatlingVersion % "test",
-//      "io.gatling" % "gatling-test-framework" % gatlingVersion % "test",
-//
-//      "com.thesamet.scalapb" %% "scalapb-runtime-grpc" % scalapb.compiler.Version.scalapbVersion,
-//      "com.thesamet.scalapb" %% "scalapb-runtime" % scalapb.compiler.Version.scalapbVersion % "protobuf",
-//    ),
   )
