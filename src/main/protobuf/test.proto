@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-//package example.protos;
-//option java_multiple_files = true;
+option java_multiple_files = true;
 option java_package = "example";
-//option java_outer_classname = "HelloWorldProto";
+
+import "google/api/annotations.proto";
 
 message HelloRequest {
     string name = 1;
@@ -14,5 +14,10 @@ message HelloReply {
 }
 
 service GreeterService {
-    rpc SayHello (HelloRequest) returns (HelloReply) {}
+    rpc SayHello (HelloRequest) returns (HelloReply)  {
+        option (google.api.http) = {
+            post: "/sessions"
+            body: "*"
+        };
+    }
 }
