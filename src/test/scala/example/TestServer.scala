@@ -1,8 +1,9 @@
-package example.test
+package example
 
 import io.grpc.{Server, ServerBuilder}
+
 import scala.concurrent.{ExecutionContext, Future}
-//import scala.util.{Random, Try}
+import example.test.{GreeterServiceGrpc, HelloReply, HelloRequest}
 
 object TestServer {
   def startServer(): Server = {

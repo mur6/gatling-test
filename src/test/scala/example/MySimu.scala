@@ -1,4 +1,4 @@
-package example.test
+package example
 
 import com.github.phisgr.gatling.grpc.Predef._
 import com.github.phisgr.gatling.pb._
@@ -8,6 +8,7 @@ import io.gatling.core.Predef.{stringToExpression => _, _}
 import io.gatling.core.session.Expression
 import io.grpc.{ManagedChannelBuilder, Status}
 import scala.concurrent.duration._
+import example.test.{GreeterServiceGrpc, HelloReply, HelloRequest}
 
 
 class MySimu extends Simulation {
