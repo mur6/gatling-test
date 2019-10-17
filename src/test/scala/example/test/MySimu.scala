@@ -1,6 +1,5 @@
 package example.test
 
-import example.test._
 import com.github.phisgr.gatling.grpc.Predef._
 import com.github.phisgr.gatling.pb._
 import com.github.phisgr.gatling.util._
@@ -12,7 +11,6 @@ import scala.concurrent.duration._
 
 
 class MySimu extends Simulation {
-  //val grpcConf = grpc(ManagedChannelBuilder.forAddress("localhost", 8080).usePlaintext())
   val grpcConf = grpc(ManagedChannelBuilder.forAddress("localhost", 8080).usePlaintext())
 
   val computerDbScn = scenario("My Scenario")
