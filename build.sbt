@@ -12,6 +12,9 @@ lazy val root = (project in file("."))
       "-language:existentials",
       "-language:implicitConversions",
     ),
+//    includeFilter in PB.generate := new SimpleFilter(
+//      file => file.endsWith("annotations.proto") || file.endsWith("http.proto")
+//    ),
     libraryDependencies ++= Seq(
       "io.grpc" % "grpc-netty" % scalapb.compiler.Version.grpcJavaVersion,
       "com.thesamet.scalapb" %% "scalapb-runtime" % scalapb.compiler.Version.scalapbVersion % "protobuf",
@@ -20,5 +23,6 @@ lazy val root = (project in file("."))
       "io.gatling.highcharts" % "gatling-charts-highcharts" % gatlingVersion % "test",
       "io.gatling" % "gatling-test-framework" % gatlingVersion % "test",
       "com.github.phisgr" %% "gatling-grpc" % "0.5.0" % "test",
+      "com.google.api.grpc" % "googleapis-common-protos" % "0.0.3" % "protobuf",
     ),
   )
